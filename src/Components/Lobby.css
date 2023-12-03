@@ -1,0 +1,42 @@
+.control-button {
+    padding: 10px;
+    text-transform: uppercase;
+    width: 10vw;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 5px 5px 5px #379248;
+    transition: 0.2s ease-in-out;
+}
+
+.control-button:hover {
+    cursor: pointer;
+    background-color: #74a27e;
+    color: white;
+}
+
+.control-button:active {
+    background-color: #000000;
+}
+
+.container {
+    background-color: #99d8a5;
+    height: 50vh;
+    width: 40vw;
+    display: flex;
+    align-items: Center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 5px 5px 10px #379248;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 80vw;
+    }
+
+    .control-button {
+        width: 40vw;
+    }
+}

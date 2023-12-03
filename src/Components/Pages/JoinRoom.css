@@ -1,0 +1,25 @@
+.control-button{
+    padding: 10px;
+    text-transform: uppercase;
+    width: 10vw;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 5px 5px 5px #379248 ;
+    transition: .2s ease-in-out;
+
+}
+
+.control-button:hover{
+    cursor: pointer;
+    background-color: #74a27e;
+    color:white;
+    
+    
+}
+
+.control-button:active{
+    background-color: #000000;
+    
+    
+}
