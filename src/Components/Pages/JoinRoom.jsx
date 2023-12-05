@@ -19,7 +19,6 @@ function JoinRoom() {
 
       else {
         alert("Room is filled :(");
-        navigate(-1)
       }
     })
   }, [socket])
