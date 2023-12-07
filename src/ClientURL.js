@@ -1,3 +1,3 @@
-const ClientURL = "https://multiplayer-game-client-j6wcwl391-samiul-islam-123s-projects.vercel.app"
+const ClientURL = "https://multiplayer-game-client.vercel.app"
 
 export default ClientURL;
