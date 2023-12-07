@@ -1,3 +1,3 @@
-const ClientURL = "https://multiplayer-game-frontend.onrender.com"
+const ClientURL = "https://multiplayer-game-client.vercel.app/"
 
 export default ClientURL;
