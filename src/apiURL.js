@@ -1,3 +1,3 @@
-const apiURL = "https://game-server-cpd2.onrender.com";
+const apiURL = "http://localhost:5500";
 
 export default apiURL;

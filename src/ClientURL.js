@@ -1,3 +1,3 @@
-const ClientURL = "https://game-client-1m52.onrender.com"
+const ClientURL = "http://localhost:3000"
 
 export default ClientURL;
