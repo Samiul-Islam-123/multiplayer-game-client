@@ -13,15 +13,28 @@ function Gameplay() {
     const [joined, setJoined] = useState(false);
     const [symbol, setSymbol] = useState("");
     const [receivedData, setReceivedData] = useState({});
-    const initialMatrix = Array.from({ length: 3 }, () => Array(3).fill(null));
-    const [gameBoard, setGameBoard] = useState(initialMatrix);
+    //const initialMatrix = Array.from({ length: 3 }, () => Array(3).fill(null));
+    const [gameboard, setGameboard] = useState([
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""]])
+
+    const [myTurn, setMyTurn] = useState(false);
+
 
 
     useEffect(() => {
 
         socket.on("join-room-response", data => {
             alert(data.message);
+
         });
+
+        socket.on('gameboard-data', gameBoardData => {
+            setGameboard(gameBoardData)
+            //console.log(gameboard)
+
+        })
 
         socket.on('response-roomData', roomData => {
             console.log(roomData);
@@ -38,10 +51,24 @@ function Gameplay() {
             }
         });
 
-        socket.on('button-coordinates-response', data => {
-            console.log(data);
+        socket.on('turn-X', (data) => {
+            console.log(data)
+            if (data == socket.id)
+                setMyTurn(true);
+        })
 
-            setReceivedData(data)
+        socket.on('turn-O', (data) => {
+            if (data == socket.id)
+                setMyTurn(true)
+        })
+
+        socket.on('button-coordinates-response', data => {
+            console.log('My Turn : ' + myTurn)
+
+            const prevData = [...gameboard]
+            prevData[data.row][data.col] = data.symbol;
+            setGameboard(prevData);
+
         })
 
 
@@ -56,11 +83,19 @@ function Gameplay() {
     }, [roomID]);
 
     const handleClick = (row, col) => {
+
+        const prevData = [...gameboard]
+        prevData[row][col] = symbol;
+        setGameboard(prevData);
+
+        //console.log(gameboard);
+
         socket.emit('button-coordinates', {
             row: row,
             col: col,
             roomID: roomID,
-            symbol: symbol
+            symbol: symbol,
+            gameboard: gameboard
         })
     };
 
@@ -107,16 +142,7 @@ function Gameplay() {
                                         onClick={() => handleClick(row, col)}
                                     >
                                         {
-                                            receivedData ? (<>
-
-                                                {receivedData.row == row && receivedData.col == col ? (
-                                                    <Typography variant='h5' align='center'>
-                                                        {receivedData.symbol}
-                                                    </Typography>
-                                                ) : (
-                                                    <></>
-                                                )}
-                                            </>) : null
+                                            gameboard[row][col]
                                         }
                                     </Button>
                                 </Grid>
